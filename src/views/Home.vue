@@ -10,16 +10,24 @@ export default {
   data: function () {
     return {
       posts: [],
+      articles: [],
     };
   },
   created: function () {
     this.indexPosts();
+    this.indexNewsArticles();
   },
   methods: {
     indexPosts: function () {
       axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
         console.log(response.data);
         this.posts = response.data;
+      });
+    },
+    indexNewsArticles: function () {
+      axios.get("http://localhost:3000/pages").then((response) => {
+        console.log("NewsAPi:", response.data);
+        this.articles = response.data;
       });
     },
   },
